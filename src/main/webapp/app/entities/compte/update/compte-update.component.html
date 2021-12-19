@@ -1,0 +1,99 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-compte-heading" data-cy="CompteCreateUpdateHeading" jhiTranslate="bicomatApp.compte.home.createOrEditLabel">
+        Create or edit a Compte
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.compte.numero" for="field_numero">Numero</label>
+          <input type="text" class="form-control" name="numero" id="field_numero" data-cy="numero" formControlName="numero" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.compte.type" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'bicomatApp.TypeCompte.null' | translate }}</option>
+            <option value="COMPTEEPARGNE">{{ 'bicomatApp.TypeCompte.COMPTEEPARGNE' | translate }}</option>
+            <option value="COMPTECHEQUE">{{ 'bicomatApp.TypeCompte.COMPTECHEQUE' | translate }}</option>
+            <option value="COMPTEPLACEMENT">{{ 'bicomatApp.TypeCompte.COMPTEPLACEMENT' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.compte.solde" for="field_solde">Solde</label>
+          <input type="number" class="form-control" name="solde" id="field_solde" data-cy="solde" formControlName="solde" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.compte.decouvert" for="field_decouvert">Decouvert</label>
+          <input type="number" class="form-control" name="decouvert" id="field_decouvert" data-cy="decouvert" formControlName="decouvert" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.compte.tauxRenumeration" for="field_tauxRenumeration"
+            >Taux Renumeration</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="tauxRenumeration"
+            id="field_tauxRenumeration"
+            data-cy="tauxRenumeration"
+            formControlName="tauxRenumeration"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.compte.client" for="field_client">Client</label>
+          <select class="form-control" id="field_client" data-cy="client" name="client" formControlName="client">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="clientOption.id === editForm.get('client')!.value?.id ? editForm.get('client')!.value : clientOption"
+              *ngFor="let clientOption of clientsSharedCollection; trackBy: trackClientById"
+            >
+              {{ clientOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.compte.banque" for="field_banque">Banque</label>
+          <select class="form-control" id="field_banque" data-cy="banque" name="banque" formControlName="banque">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="banqueOption.id === editForm.get('banque')!.value?.id ? editForm.get('banque')!.value : banqueOption"
+              *ngFor="let banqueOption of banquesSharedCollection; trackBy: trackBanqueById"
+            >
+              {{ banqueOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

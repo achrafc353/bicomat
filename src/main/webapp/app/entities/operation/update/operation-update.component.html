@@ -1,0 +1,142 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-operation-heading" data-cy="OperationCreateUpdateHeading" jhiTranslate="bicomatApp.operation.home.createOrEditLabel">
+        Create or edit a Operation
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.operation.numero" for="field_numero">Numero</label>
+          <input type="text" class="form-control" name="numero" id="field_numero" data-cy="numero" formControlName="numero" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.operation.date" for="field_date">Date</label>
+          <div class="d-flex">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="datetime-local"
+              class="form-control"
+              name="date"
+              formControlName="date"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.operation.montant" for="field_montant">Montant</label>
+          <input type="number" class="form-control" name="montant" id="field_montant" data-cy="montant" formControlName="montant" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.operation.signe" for="field_signe">Signe</label>
+          <input type="number" class="form-control" name="signe" id="field_signe" data-cy="signe" formControlName="signe" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.operation.type" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'bicomatApp.TypeOperation.null' | translate }}</option>
+            <option value="RETRAITLIQUIDE">{{ 'bicomatApp.TypeOperation.RETRAITLIQUIDE' | translate }}</option>
+            <option value="DEPOTLIQUIDE">{{ 'bicomatApp.TypeOperation.DEPOTLIQUIDE' | translate }}</option>
+            <option value="VIREMENTINTERNE">{{ 'bicomatApp.TypeOperation.VIREMENTINTERNE' | translate }}</option>
+            <option value="VIREMENTEXTERNE">{{ 'bicomatApp.TypeOperation.VIREMENTEXTERNE' | translate }}</option>
+            <option value="PAIEMENTCHEQUE">{{ 'bicomatApp.TypeOperation.PAIEMENTCHEQUE' | translate }}</option>
+            <option value="PAIEMENTCB">{{ 'bicomatApp.TypeOperation.PAIEMENTCB' | translate }}</option>
+            <option value="DEPOTCHEQUE">{{ 'bicomatApp.TypeOperation.DEPOTCHEQUE' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.operation.echeance" for="field_echeance">Echeance</label>
+          <div class="d-flex">
+            <input
+              id="field_echeance"
+              data-cy="echeance"
+              type="datetime-local"
+              class="form-control"
+              name="echeance"
+              formControlName="echeance"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.operation.operationLiee" for="field_operationLiee"
+            >Operation Liee</label
+          >
+          <select
+            class="form-control"
+            id="field_operationLiee"
+            data-cy="operationLiee"
+            name="operationLiee"
+            formControlName="operationLiee"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                operationOption.id === editForm.get('operationLiee')!.value?.id ? editForm.get('operationLiee')!.value : operationOption
+              "
+              *ngFor="let operationOption of operationLieesCollection; trackBy: trackOperationById"
+            >
+              {{ operationOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.operation.compte" for="field_compte">Compte</label>
+          <select class="form-control" id="field_compte" data-cy="compte" name="compte" formControlName="compte">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="compteOption.id === editForm.get('compte')!.value?.id ? editForm.get('compte')!.value : compteOption"
+              *ngFor="let compteOption of comptesSharedCollection; trackBy: trackCompteById"
+            >
+              {{ compteOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.operation.client" for="field_client">Client</label>
+          <select class="form-control" id="field_client" data-cy="client" name="client" formControlName="client">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="clientOption.id === editForm.get('client')!.value?.id ? editForm.get('client')!.value : clientOption"
+              *ngFor="let clientOption of clientsSharedCollection; trackBy: trackClientById"
+            >
+              {{ clientOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

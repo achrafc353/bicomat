@@ -1,0 +1,28 @@
+{
+  "bicomatApp": {
+    "carteBancaire": {
+      "home": {
+        "title": "CarteBancaires",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Carte Bancaire",
+        "createOrEditLabel": "Créer ou éditer un Carte Bancaire",
+        "notFound": "Aucun Carte Bancaire trouvé"
+      },
+      "created": "Un nouveau Carte Bancaire a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Carte Bancaire avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Carte Bancaire avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Carte Bancaire {{ id }} ?"
+      },
+      "detail": {
+        "title": "Carte Bancaire"
+      },
+      "id": "ID",
+      "numero": "Numero",
+      "type": "Type",
+      "echeance": "Echeance",
+      "codeCrypto": "Code Crypto",
+      "client": "Client"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "name": "Operation",
+  "fields": [
+    {
+      "fieldName": "numero",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "montant",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "signe",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "TypeOperation",
+      "fieldValues": "RETRAITLIQUIDE,DEPOTLIQUIDE,VIREMENTINTERNE,VIREMENTEXTERNE,PAIEMENTCHEQUE,PAIEMENTCB,DEPOTCHEQUE"
+    },
+    {
+      "fieldName": "echeance",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "operation",
+      "otherEntityRelationshipName": "operation",
+      "relationshipName": "operationLiee",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "compte",
+      "otherEntityRelationshipName": "operation",
+      "relationshipName": "compte"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "operations",
+      "relationshipName": "client"
+    }
+  ],
+  "entityTableName": "operation",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211219153418"
+}

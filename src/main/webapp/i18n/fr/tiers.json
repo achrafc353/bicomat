@@ -1,0 +1,24 @@
+{
+  "bicomatApp": {
+    "tiers": {
+      "home": {
+        "title": "Tiers",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Tiers",
+        "createOrEditLabel": "Créer ou éditer un Tiers",
+        "notFound": "Aucun Tiers trouvé"
+      },
+      "created": "Un nouveau Tiers a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Tiers avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Tiers avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Tiers {{ id }} ?"
+      },
+      "detail": {
+        "title": "Tiers"
+      },
+      "id": "ID",
+      "etatTiers": "Etat Tiers"
+    }
+  }
+}

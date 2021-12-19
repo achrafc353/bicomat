@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="client">
+      <h2 data-cy="clientDetailsHeading"><span jhiTranslate="bicomatApp.client.detail.title">Client</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ client.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.client.nom">Nom</span></dt>
+        <dd>
+          <span>{{ client.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.client.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ client.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.client.admel">Admel</span></dt>
+        <dd>
+          <span>{{ client.admel }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.client.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'bicomatApp.TypeClient2.' + client.type }}">{{ client.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.client.login">Login</span></dt>
+        <dd>
+          <span>{{ client.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.client.motDePasse">Mot De Passe</span></dt>
+        <dd>
+          <span>{{ client.motDePasse }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.client.anneeArrivee">Annee Arrivee</span></dt>
+        <dd>
+          <span>{{ client.anneeArrivee | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.client.numContrat">Num Contrat</span></dt>
+        <dd>
+          <span>{{ client.numContrat }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.client.agency">Agency</span></dt>
+        <dd>
+          <span>{{ client.agency }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.client.numPortable">Num Portable</span></dt>
+        <dd>
+          <span>{{ client.numPortable }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.client.tiers">Tiers</span></dt>
+        <dd>
+          <div *ngIf="client.tiers">
+            <a [routerLink]="['/tiers', client.tiers?.id, 'view']">{{ client.tiers?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.client.conseiller">Conseiller</span></dt>
+        <dd>
+          <div *ngIf="client.conseiller">
+            <a [routerLink]="['/conseiller', client.conseiller?.id, 'view']">{{ client.conseiller?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.client.banque">Banque</span></dt>
+        <dd>
+          <div *ngIf="client.banque">
+            <a [routerLink]="['/banque', client.banque?.id, 'view']">{{ client.banque?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/client', client.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

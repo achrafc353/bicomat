@@ -1,0 +1,26 @@
+{
+  "bicomatApp": {
+    "conseiller": {
+      "home": {
+        "title": "Conseillers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Conseiller",
+        "createOrEditLabel": "Create or edit a Conseiller",
+        "notFound": "No Conseillers found"
+      },
+      "created": "A new Conseiller is created with identifier {{ param }}",
+      "updated": "A Conseiller is updated with identifier {{ param }}",
+      "deleted": "A Conseiller is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Conseiller {{ id }}?"
+      },
+      "detail": {
+        "title": "Conseiller"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "clients": "Clients"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "bicomatApp": {
+    "TypeOperation": {
+      "null": "",
+      "RETRAITLIQUIDE": "RETRAITLIQUIDE",
+      "DEPOTLIQUIDE": "DEPOTLIQUIDE",
+      "VIREMENTINTERNE": "VIREMENTINTERNE",
+      "VIREMENTEXTERNE": "VIREMENTEXTERNE",
+      "PAIEMENTCHEQUE": "PAIEMENTCHEQUE",
+      "PAIEMENTCB": "PAIEMENTCB",
+      "DEPOTCHEQUE": "DEPOTCHEQUE"
+    }
+  }
+}

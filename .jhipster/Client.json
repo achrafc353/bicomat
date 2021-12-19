@@ -1,0 +1,95 @@
+{
+  "name": "Client",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "admel",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "TypeClient2",
+      "fieldValues": "PRIVE,MORAL"
+    },
+    {
+      "fieldName": "login",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "motDePasse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "anneeArrivee",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "numContrat",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "agency",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numPortable",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "tiers",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "tiers",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "carteBancaire",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "cartes"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "compte",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "comptes"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "operation",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "operations"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "conseiller",
+      "otherEntityRelationshipName": "clients",
+      "relationshipName": "conseiller"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "banque",
+      "otherEntityRelationshipName": "clients",
+      "relationshipName": "banque"
+    }
+  ],
+  "entityTableName": "client",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211219153414"
+}

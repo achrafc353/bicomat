@@ -41,6 +41,8 @@
     "jwtSecretKey": "NWQ1Y2JiNTQxYzQ3OWMwMzI4YThkZmE1YTRlZTQyNmNkYTFkOGI1MDliOGVmMmIzMDIwYzVjNzQ1ZTU3YmQ4YjdmMDBlNmNiNmEwYjU0YzQ5YmQ2ZTljYjYzNzQ2NDQwNzJmODc5NzQ1ZTM4NzliYjM3ZjQ5YjdkM2M3MDdhNGY=",
     "clientPackageManager": "npm",
     "clientThemeVariant": "",
-    "languages": ["en", "fr"]
+    "languages": ["en", "fr"],
+    "entities": ["Banque", "Client", "Tiers", "CarteBancaire", "Compte", "Operation", "Conseiller"],
+    "lastLiquibaseTimestamp": 1639928059000
   }
 }

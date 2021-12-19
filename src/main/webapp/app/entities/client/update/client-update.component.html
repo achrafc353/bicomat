@@ -1,0 +1,160 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-client-heading" data-cy="ClientCreateUpdateHeading" jhiTranslate="bicomatApp.client.home.createOrEditLabel">
+        Create or edit a Client
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.client.nom" for="field_nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.client.prenom" for="field_prenom">Prenom</label>
+          <input type="text" class="form-control" name="prenom" id="field_prenom" data-cy="prenom" formControlName="prenom" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.client.admel" for="field_admel">Admel</label>
+          <input type="text" class="form-control" name="admel" id="field_admel" data-cy="admel" formControlName="admel" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.client.type" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'bicomatApp.TypeClient2.null' | translate }}</option>
+            <option value="PRIVE">{{ 'bicomatApp.TypeClient2.PRIVE' | translate }}</option>
+            <option value="MORAL">{{ 'bicomatApp.TypeClient2.MORAL' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.client.login" for="field_login">Login</label>
+          <input type="text" class="form-control" name="login" id="field_login" data-cy="login" formControlName="login" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.client.motDePasse" for="field_motDePasse">Mot De Passe</label>
+          <input
+            type="text"
+            class="form-control"
+            name="motDePasse"
+            id="field_motDePasse"
+            data-cy="motDePasse"
+            formControlName="motDePasse"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.client.anneeArrivee" for="field_anneeArrivee">Annee Arrivee</label>
+          <div class="d-flex">
+            <input
+              id="field_anneeArrivee"
+              data-cy="anneeArrivee"
+              type="datetime-local"
+              class="form-control"
+              name="anneeArrivee"
+              formControlName="anneeArrivee"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.client.numContrat" for="field_numContrat">Num Contrat</label>
+          <input
+            type="text"
+            class="form-control"
+            name="numContrat"
+            id="field_numContrat"
+            data-cy="numContrat"
+            formControlName="numContrat"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.client.agency" for="field_agency">Agency</label>
+          <input type="text" class="form-control" name="agency" id="field_agency" data-cy="agency" formControlName="agency" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.client.numPortable" for="field_numPortable">Num Portable</label>
+          <input
+            type="text"
+            class="form-control"
+            name="numPortable"
+            id="field_numPortable"
+            data-cy="numPortable"
+            formControlName="numPortable"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.client.tiers" for="field_tiers">Tiers</label>
+          <select class="form-control" id="field_tiers" data-cy="tiers" name="tiers" formControlName="tiers">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="tiersOption.id === editForm.get('tiers')!.value?.id ? editForm.get('tiers')!.value : tiersOption"
+              *ngFor="let tiersOption of tiersCollection; trackBy: trackTiersById"
+            >
+              {{ tiersOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.client.conseiller" for="field_conseiller">Conseiller</label>
+          <select class="form-control" id="field_conseiller" data-cy="conseiller" name="conseiller" formControlName="conseiller">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                conseillerOption.id === editForm.get('conseiller')!.value?.id ? editForm.get('conseiller')!.value : conseillerOption
+              "
+              *ngFor="let conseillerOption of conseillersSharedCollection; trackBy: trackConseillerById"
+            >
+              {{ conseillerOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.client.banque" for="field_banque">Banque</label>
+          <select class="form-control" id="field_banque" data-cy="banque" name="banque" formControlName="banque">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="banqueOption.id === editForm.get('banque')!.value?.id ? editForm.get('banque')!.value : banqueOption"
+              *ngFor="let banqueOption of banquesSharedCollection; trackBy: trackBanqueById"
+            >
+              {{ banqueOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

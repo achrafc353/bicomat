@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="compte">
+      <h2 data-cy="compteDetailsHeading"><span jhiTranslate="bicomatApp.compte.detail.title">Compte</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ compte.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.compte.numero">Numero</span></dt>
+        <dd>
+          <span>{{ compte.numero }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.compte.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'bicomatApp.TypeCompte.' + compte.type }}">{{ compte.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.compte.solde">Solde</span></dt>
+        <dd>
+          <span>{{ compte.solde }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.compte.decouvert">Decouvert</span></dt>
+        <dd>
+          <span>{{ compte.decouvert }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.compte.tauxRenumeration">Taux Renumeration</span></dt>
+        <dd>
+          <span>{{ compte.tauxRenumeration }}</span>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.compte.client">Client</span></dt>
+        <dd>
+          <div *ngIf="compte.client">
+            <a [routerLink]="['/client', compte.client?.id, 'view']">{{ compte.client?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="bicomatApp.compte.banque">Banque</span></dt>
+        <dd>
+          <div *ngIf="compte.banque">
+            <a [routerLink]="['/banque', compte.banque?.id, 'view']">{{ compte.banque?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/compte', compte.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

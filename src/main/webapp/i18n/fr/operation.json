@@ -1,0 +1,32 @@
+{
+  "bicomatApp": {
+    "operation": {
+      "home": {
+        "title": "Operations",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Operation",
+        "createOrEditLabel": "Créer ou éditer un Operation",
+        "notFound": "Aucun Operation trouvé"
+      },
+      "created": "Un nouveau Operation a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Operation avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Operation avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Operation {{ id }} ?"
+      },
+      "detail": {
+        "title": "Operation"
+      },
+      "id": "ID",
+      "numero": "Numero",
+      "date": "Date",
+      "montant": "Montant",
+      "signe": "Signe",
+      "type": "Type",
+      "echeance": "Echeance",
+      "operationLiee": "Operation Liee",
+      "compte": "Compte",
+      "client": "Client"
+    }
+  }
+}

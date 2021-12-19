@@ -1,0 +1,120 @@
+<div>
+  <h2 id="page-heading" data-cy="OperationHeading">
+    <span jhiTranslate="bicomatApp.operation.home.title">Operations</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="bicomatApp.operation.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-operation"
+        [routerLink]="['/operation/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="bicomatApp.operation.home.createLabel"> Create a new Operation </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="operations?.length === 0">
+    <span jhiTranslate="bicomatApp.operation.home.notFound">No operations found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="operations && operations.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="numero">
+            <span jhiTranslate="bicomatApp.operation.numero">Numero</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="date"><span jhiTranslate="bicomatApp.operation.date">Date</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="montant">
+            <span jhiTranslate="bicomatApp.operation.montant">Montant</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="signe">
+            <span jhiTranslate="bicomatApp.operation.signe">Signe</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="type"><span jhiTranslate="bicomatApp.operation.type">Type</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="echeance">
+            <span jhiTranslate="bicomatApp.operation.echeance">Echeance</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="operationLiee.id">
+            <span jhiTranslate="bicomatApp.operation.operationLiee">Operation Liee</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="compte.id">
+            <span jhiTranslate="bicomatApp.operation.compte">Compte</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="client.id">
+            <span jhiTranslate="bicomatApp.operation.client">Client</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let operation of operations; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/operation', operation.id, 'view']">{{ operation.id }}</a>
+          </td>
+          <td>{{ operation.numero }}</td>
+          <td>{{ operation.date | formatMediumDatetime }}</td>
+          <td>{{ operation.montant }}</td>
+          <td>{{ operation.signe }}</td>
+          <td jhiTranslate="{{ 'bicomatApp.TypeOperation.' + operation.type }}">{{ operation.type }}</td>
+          <td>{{ operation.echeance | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="operation.operationLiee">
+              <a [routerLink]="['/operation', operation.operationLiee?.id, 'view']">{{ operation.operationLiee?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="operation.compte">
+              <a [routerLink]="['/compte', operation.compte?.id, 'view']">{{ operation.compte?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="operation.client">
+              <a [routerLink]="['/client', operation.client?.id, 'view']">{{ operation.client?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/operation', operation.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/operation', operation.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(operation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

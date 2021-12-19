@@ -1,0 +1,50 @@
+{
+  "name": "Compte",
+  "fields": [
+    {
+      "fieldName": "numero",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "TypeCompte",
+      "fieldValues": "COMPTEEPARGNE,COMPTECHEQUE,COMPTEPLACEMENT"
+    },
+    {
+      "fieldName": "solde",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "decouvert",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "tauxRenumeration",
+      "fieldType": "Long"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "comptes",
+      "relationshipName": "client"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "banque",
+      "otherEntityRelationshipName": "comptes",
+      "relationshipName": "banque"
+    }
+  ],
+  "entityTableName": "compte",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211219153417"
+}

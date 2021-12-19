@@ -48,6 +48,19 @@ public class CacheConfiguration {
             createCache(cm, com.miage.bicomat.domain.User.class.getName());
             createCache(cm, com.miage.bicomat.domain.Authority.class.getName());
             createCache(cm, com.miage.bicomat.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.miage.bicomat.domain.Banque.class.getName());
+            createCache(cm, com.miage.bicomat.domain.Banque.class.getName() + ".comptes");
+            createCache(cm, com.miage.bicomat.domain.Banque.class.getName() + ".clients");
+            createCache(cm, com.miage.bicomat.domain.Client.class.getName());
+            createCache(cm, com.miage.bicomat.domain.Client.class.getName() + ".cartes");
+            createCache(cm, com.miage.bicomat.domain.Client.class.getName() + ".comptes");
+            createCache(cm, com.miage.bicomat.domain.Client.class.getName() + ".operations");
+            createCache(cm, com.miage.bicomat.domain.Tiers.class.getName());
+            createCache(cm, com.miage.bicomat.domain.CarteBancaire.class.getName());
+            createCache(cm, com.miage.bicomat.domain.Compte.class.getName());
+            createCache(cm, com.miage.bicomat.domain.Operation.class.getName());
+            createCache(cm, com.miage.bicomat.domain.Conseiller.class.getName());
+            createCache(cm, com.miage.bicomat.domain.Conseiller.class.getName() + ".clients");
             // jhipster-needle-ehcache-add-entry
         };
     }

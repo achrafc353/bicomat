@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-carte-bancaire-heading"
+        data-cy="CarteBancaireCreateUpdateHeading"
+        jhiTranslate="bicomatApp.carteBancaire.home.createOrEditLabel"
+      >
+        Create or edit a Carte Bancaire
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.carteBancaire.numero" for="field_numero">Numero</label>
+          <input type="text" class="form-control" name="numero" id="field_numero" data-cy="numero" formControlName="numero" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.carteBancaire.type" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'bicomatApp.TypeCarte.null' | translate }}</option>
+            <option value="VISA">{{ 'bicomatApp.TypeCarte.VISA' | translate }}</option>
+            <option value="MASTERCARD">{{ 'bicomatApp.TypeCarte.MASTERCARD' | translate }}</option>
+            <option value="VISAPLUS">{{ 'bicomatApp.TypeCarte.VISAPLUS' | translate }}</option>
+            <option value="EUROCARD">{{ 'bicomatApp.TypeCarte.EUROCARD' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.carteBancaire.echeance" for="field_echeance">Echeance</label>
+          <div class="d-flex">
+            <input
+              id="field_echeance"
+              data-cy="echeance"
+              type="datetime-local"
+              class="form-control"
+              name="echeance"
+              formControlName="echeance"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.carteBancaire.codeCrypto" for="field_codeCrypto">Code Crypto</label>
+          <input
+            type="text"
+            class="form-control"
+            name="codeCrypto"
+            id="field_codeCrypto"
+            data-cy="codeCrypto"
+            formControlName="codeCrypto"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="bicomatApp.carteBancaire.client" for="field_client">Client</label>
+          <select class="form-control" id="field_client" data-cy="client" name="client" formControlName="client">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="clientOption.id === editForm.get('client')!.value?.id ? editForm.get('client')!.value : clientOption"
+              *ngFor="let clientOption of clientsSharedCollection; trackBy: trackClientById"
+            >
+              {{ clientOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

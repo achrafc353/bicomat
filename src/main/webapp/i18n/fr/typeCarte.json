@@ -1,0 +1,11 @@
+{
+  "bicomatApp": {
+    "TypeCarte": {
+      "null": "",
+      "VISA": "VISA",
+      "MASTERCARD": "MASTERCARD",
+      "VISAPLUS": "VISAPLUS",
+      "EUROCARD": "EUROCARD"
+    }
+  }
+}

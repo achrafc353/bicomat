@@ -1,0 +1,40 @@
+{
+  "name": "CarteBancaire",
+  "fields": [
+    {
+      "fieldName": "numero",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "TypeCarte",
+      "fieldValues": "VISA,MASTERCARD,VISAPLUS,EUROCARD"
+    },
+    {
+      "fieldName": "echeance",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "codeCrypto",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "cartes",
+      "relationshipName": "client"
+    }
+  ],
+  "entityTableName": "carte_bancaire",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211219153416"
+}

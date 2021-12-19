@@ -1,0 +1,10 @@
+{
+  "bicomatApp": {
+    "TypeCompte": {
+      "null": "",
+      "COMPTEEPARGNE": "COMPTEEPARGNE",
+      "COMPTECHEQUE": "COMPTECHEQUE",
+      "COMPTEPLACEMENT": "COMPTEPLACEMENT"
+    }
+  }
+}
