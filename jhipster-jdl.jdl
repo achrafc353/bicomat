@@ -1,0 +1,99 @@
+
+entity Banque {
+	nom String,
+    adresse String
+}
+
+entity Client {
+	nom String,
+    prenom String,
+    admel String,
+    type TypeClient,
+    login String,
+    motDePasse String,
+    type TypeClient2,
+    anneeArrivee Instant,
+    numContrat String,
+    agency String,
+    numPortable String
+}
+
+entity Tiers {
+	etatTiers String
+}
+
+entity CarteBancaire {
+	numero String,
+    type TypeCarte,
+    echeance Instant,
+    codeCrypto String
+}
+
+entity Compte {
+	numero String,
+    type TypeCompte,
+    solde Long
+    decouvert Long,
+    tauxRenumeration Long
+}
+
+entity Operation {
+	numero String,
+    date Instant,
+    montant Long,
+    signe Long, // +1 ou -1
+    type TypeOperation
+    echeance Instant
+}
+
+entity Conseiller {
+	nom String,
+    prenom String
+}
+
+enum TypeClient {
+    INETRNE, TIERS
+}
+
+enum TypeClient2 {
+    PRIVE, MORAL
+}
+enum TypeCarte {
+    VISA, MASTERCARD, VISAPLUS, EUROCARD
+}
+
+enum TypeCompte {
+    COMPTEEPARGNE, COMPTECHEQUE, COMPTEPLACEMENT
+}
+
+enum TypeOperation {
+	RETRAITLIQUIDE, DEPOTLIQUIDE, VIREMENTINTERNE, VIREMENTEXTERNE, PAIEMENTCHEQUE, PAIEMENTCB, DEPOTCHEQUE
+}
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Client{cartes} to CarteBancaire,
+    Client{comptes} to Compte,
+    Client{operations} to Operation,
+    Conseiller{clients} to Client
+}
+
+relationship OneToMany {
+    Banque{comptes} to Compte,
+    Banque{clients} to Client
+}
+
+relationship ManyToOne {
+    Operation{compte} to Compte
+}
+
+relationship OneToOne {
+	Operation{operationLiee} to Operation,
+    Client{tiers} to Tiers
+}
+
+
+// Set pagination options
+paginate Operation, Client with infinite-scroll
+paginate Compte with pagination
