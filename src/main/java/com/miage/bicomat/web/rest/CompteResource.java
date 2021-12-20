@@ -183,6 +183,20 @@ public class CompteResource {
     }
 
     /**
+     * {@code GET  /comptes/client/:id} : get the comptes with Client Id.
+     *
+     * @param id the id of the client of the comptes to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the compte, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/comptes/client/{id}")
+    public ResponseEntity<List<Compte>> getCompteswithClientId(@PathVariable Long id) {
+        log.debug("REST request to get Comptes of client : {}", id);
+        List<Compte> comptes = compteRepository.findAllByClientId(id);
+        //return ResponseUtil.wrapOrNotFound(comptes);
+        return ResponseEntity.ok().body(comptes);
+    }
+
+    /**
      * {@code DELETE  /comptes/:id} : delete the "id" compte.
      *
      * @param id the id of the compte to delete.

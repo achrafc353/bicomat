@@ -37,6 +37,11 @@ export class CompteService {
     return this.http.get<ICompte[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
+  queryWithClientId(clientid: number | undefined = 1, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<ICompte[]>(`${this.resourceUrl}/client/${clientid}`, { params: options, observe: 'response' });
+  }
+
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
